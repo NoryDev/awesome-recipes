@@ -1,9 +1,1 @@
-<h1><%= @recipe.name %></h1>
-
-<p>Ingredients:</p>
-
-<ul>
-  <% @recipe.ingredients.each do |ingredient| %>
-    <li><%= ingredient.name %></li>
-  <% end %>
-</ul>
+<%= react_component("Recipe", { recipe: {name: @recipe.name, ingredients: @recipe.ingredients.pluck(:name)} }) %>
