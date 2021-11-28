@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import Recipe from "./Recipe";
+
 class RecipesList extends React.Component {
   render() {
     const recipes = this.props.recipes;
@@ -24,9 +26,7 @@ class RecipesList extends React.Component {
         )}
 
         {recipes.map((recipe) => (
-          <h3 key={recipe.id}>
-            <a href={`/recipes/${recipe.id}`}>{recipe.name}</a>
-          </h3>
+          <Recipe key={recipe.id} recipe={recipe} />
         ))}
       </React.Fragment>
     );
@@ -37,4 +37,5 @@ RecipesList.propTypes = {
   recipes: PropTypes.array,
   query_string: PropTypes.string,
 };
+
 export default RecipesList;
