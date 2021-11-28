@@ -1,0 +1,14 @@
+<%= form_with url: "/recipes", method: :get do |form| %>
+  <%= form.text_field :q, placeholder: "What ingredient do you already have?" %>
+  <%= form.submit "Find me a recipe" %>
+<% end %>
+
+<% if @query_string.present? %>
+  <p>Here are some recipes with ingredient '<%= @query_string %>':</p>
+<% else %>
+  <p>Feeling adventurous? Why not try one of these:</p>
+<% end %>
+
+<% @recipes.each do |recipe| %>
+  <h3><%= link_to recipe.name, recipe %></h3>
+<% end %>
