@@ -10,24 +10,42 @@ class RecipesList extends React.Component {
 
     return (
       <React.Fragment>
-        <form action="/recipes" method="get">
-          <input
-            placeholder="What ingredient do you already have?"
-            type="text"
-            name="q"
-          />
-          <button type="submit">Find me a recipe</button>
-        </form>
+        <div className="container">
+          <h1 className="mt-5 text-center">Awesome Recipes</h1>
 
-        {queryString ? (
-          <p>Here are some recipes with ingredient '{queryString}':</p>
-        ) : (
-          <p>Feeling adventurous? Why not try one of these:</p>
-        )}
+          <div className="mt-5 row justify-content-center">
+            <div className="col col-sm-12 col-md-10 col-lg-8 col-xl-6">
+              <form action="/recipes" method="get">
+                <div className="input-group input-group-lg">
+                  <input
+                    placeholder="What ingredient do you already have?"
+                    type="text"
+                    name="q"
+                    className="form-control form-control-lg"
+                  />
+                  <button className="btn btn-success" type="submit">
+                    Find me a recipe
+                  </button>
+                </div>
+                <p className="text-muted">In french please, e.g. 'Citron'</p>
+              </form>
+            </div>
+          </div>
 
-        {recipes.map((recipe) => (
-          <Recipe key={recipe.id} recipe={recipe} />
-        ))}
+          <div className="mt-5 text-center">
+            {queryString ? (
+              <h3>Here are some recipes with ingredient '{queryString}':</h3>
+            ) : (
+              <h3>Feeling adventurous? Why not try one of these:</h3>
+            )}
+          </div>
+
+          <div className="mt-5 row justify-content-center">
+            {recipes.map((recipe) => (
+              <Recipe key={recipe.id} recipe={recipe} />
+            ))}
+          </div>
+        </div>
       </React.Fragment>
     );
   }

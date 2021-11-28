@@ -1,4 +1,4 @@
 <%= react_component("RecipesList", {
-  recipes: @recipes.select(:id, :name).as_json,
+  recipes: @recipes.select(:id, :name, :image).as_json,
   query_string: @query_string
 }) %>
