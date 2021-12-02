@@ -2,7 +2,7 @@ class RecipesController < ApplicationController
   def index
     @query_string = params[:q]
 
-    @recipes = Recipe.search_or_inspire_me(@query_string)
+    @recipes = Recipe.search_or_inspire_me(@query_string, page: params[:page] || 1)
   end
 
   def show

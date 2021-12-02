@@ -1,5 +1,6 @@
 class Recipe < ApplicationRecord
   DEFAULT_RECIPES_COUNT = 3
+  PER_PAGE = 24
 
   has_many :ingredients
 
@@ -14,10 +15,10 @@ class Recipe < ApplicationRecord
   }
 
   class << self
-    def search_or_inspire_me(query_string = nil)
+    def search_or_inspire_me(query_string = nil, page: 1)
       return random_recipes if query_string.blank?
 
-      search(query_string)
+      search(query_string).page(page).per(PER_PAGE)
     end
 
     def random_recipes(count = DEFAULT_RECIPES_COUNT)

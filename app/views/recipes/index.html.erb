@@ -2,3 +2,13 @@
   recipes: @recipes.select(:id, :name, :image).as_json,
   query_string: @query_string
 }) %>
+
+<% if @recipes.respond_to?(:total_pages) %>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col">
+        <%= paginate @recipes %>
+      </div>
+    </div>
+  </div>
+<% end %>
