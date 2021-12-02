@@ -3,13 +3,21 @@ class Recipe < ApplicationRecord
 
   has_many :ingredients
 
-  scope :search, ->(query_string) { distinct.joins(:ingredients).merge(Ingredient.search(query_string)) }
+  scope :search, lambda { |query_string|
+    joins(:ingredients).
+      merge(Ingredient.search(query_string)).
+      select('recipes.*').
+      select('count(ingredients.recipe_id) as found_ingredients').
+      select('(select count(*) from ingredients where ingredients.recipe_id = recipes.id) as total_ingredients').
+      group('recipes.id').
+      order(found_ingredients: :desc, total_ingredients: :asc)
+  }
 
   class << self
     def search_or_inspire_me(query_string = nil)
       return random_recipes if query_string.blank?
 
-      search(query_string).order(:id)
+      search(query_string)
     end
 
     def random_recipes(count = DEFAULT_RECIPES_COUNT)

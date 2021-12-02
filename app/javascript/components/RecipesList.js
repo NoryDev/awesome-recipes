@@ -18,7 +18,7 @@ class RecipesList extends React.Component {
               <form action="/recipes" method="get">
                 <div className="input-group input-group-lg">
                   <input
-                    placeholder="What ingredient do you already have?"
+                    placeholder="What ingredients do you already have?"
                     type="text"
                     name="q"
                     className="form-control form-control-lg"
@@ -27,7 +27,7 @@ class RecipesList extends React.Component {
                     Find me a recipe
                   </button>
                 </div>
-                <p className="text-muted">In french please, e.g. 'Citron'</p>
+                <p className="text-muted">In french please, e.g. 'Poulet Citron Aubergine Sel Beurre'</p>
               </form>
             </div>
           </div>
